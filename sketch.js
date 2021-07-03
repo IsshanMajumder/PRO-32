@@ -10,20 +10,22 @@ var bg ;
 
 function preload() {
     // create getBackgroundImg( ) here
+    getBackgroundImg();
 }
 
 function setup(){
     var canvas = createCanvas(1200,700);
     engine = Engine.create();
     world = engine.world;
-    getBackgroundImage();
+    
 
 }
 
 function draw(){
 
     // add condition to check if any background image is there to add
-
+    if(backgroundImg)
+    background(backgroundImg);
 
     Engine.update(engine);
 
@@ -40,7 +42,7 @@ async function getBackgroundImg(){
        var responseJSON = await response.json();
        var dateTime = responseJSON.datetime;
     // write code slice the datetime
-       hour = datetime(11,13);           
+       var hour = dateTime.slice(11,13);           
     // add conditions to change the background images from sunrise to sunset
        if(hour>=04 && hour<=06){
           bg = "sunrise1.png"
